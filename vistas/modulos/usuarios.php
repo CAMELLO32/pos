@@ -56,15 +56,34 @@
 
           <tbody>
 
-            <tr>
+          <?php
+
+$item  = null;
+$valor = null;
+
+$usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+
+foreach ($usuarios as $key => $value) {
+
+    echo '<tr>
 
               <td>1</td>
-              <td>Usuario Administrador</td>
-              <td>admin</td>
-              <td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-              <td>Administrador</td>
+              <td>' . $value["nombre"] . '</td>
+              <td>' . $value["usuario"] . '</td>';
+
+    if ($value["foto"] != "") {
+
+        echo '<td><img src="' . $value["foto"] . '" class="img-thumbnail" width="40px"></td>';
+
+    } else {
+
+        echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+
+    }
+
+    echo '<td>' . $value["perfil"] . '</td>
               <td><button class="btn btn-success btn-xs">Activado</button></td>
-              <td>2017-12-12 12:05:32</td>
+              <td>' . $value["ultimo_login"] . '</td>
               <td>
 
                 <div class="btn-group">
@@ -77,7 +96,11 @@
 
               </td>
 
-            </tr>
+            </tr>';
+
+}
+
+?>
 
           </tbody>
 
